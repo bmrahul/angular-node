@@ -12,17 +12,11 @@ export class RoutesService {
   private headers: Headers;
   private options: RequestOptions;
   constructor(public _http: Http) {
-    this.actionUrl = 'http://localhost:4600/api/routes';
-    this.headers = new Headers();
-    this.headers.append('Content-Type', 'application/json');
-    this.headers.append('Accept', 'application/json');
-    this.headers.append('Access-Control-Allow-Headers', 'Content-Type, X-XSRF-TOKEN');
-    this.headers.append('Access-Control-Allow-Origin', '*');
-    this.options = new RequestOptions({ headers: this.headers });
+    this.actionUrl = 'http://localhost:4600';
   }
 
   get(): Observable<any> {
-    return this._http.get(this.actionUrl, this.options)
+    return this._http.get(this.actionUrl + '/api/routes')
       .pipe(
         map(res => this.extractData(res)),
         catchError(this.handleError)
